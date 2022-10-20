@@ -1,7 +1,7 @@
 public class Individual {
 
     static int defaultGeneLength = 64;
-    private byte[] genes = new byte[defaultGeneLength];
+    private final byte[] genes = new byte[defaultGeneLength];
     // Cache
     private int fitness = 0;
 
