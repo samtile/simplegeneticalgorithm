@@ -27,10 +27,10 @@ public class Algorithm {
         // Loop over the population size and create new individuals with
         // crossover
         for (int i = elitismOffset; i < pop.size(); i++) {
-            Individual indiv1 = tournamentSelection(pop);
-            Individual indiv2 = tournamentSelection(pop);
-            Individual newIndiv = crossover(indiv1, indiv2);
-            newPopulation.saveIndividual(i, newIndiv);
+            Individual individual1 = tournamentSelection(pop);
+            Individual individual2 = tournamentSelection(pop);
+            Individual newIndividual = crossover(individual1, individual2);
+            newPopulation.saveIndividual(i, newIndividual);
         }
 
         // Mutate population
@@ -41,28 +41,28 @@ public class Algorithm {
     }
 
     // Crossover individuals
-    private static Individual crossover(Individual indiv1, Individual indiv2) {
+    private static Individual crossover(Individual individual1, Individual individual2) {
         Individual newSol = new Individual();
         // Loop through genes
-        for (int i = 0; i < indiv1.size(); i++) {
+        for (int i = 0; i < individual1.size(); i++) {
             // Crossover
             if (Math.random() <= uniformRate) {
-                newSol.setGene(i, indiv1.getGene(i));
+                newSol.setGene(i, individual1.getGene(i));
             } else {
-                newSol.setGene(i, indiv2.getGene(i));
+                newSol.setGene(i, individual2.getGene(i));
             }
         }
         return newSol;
     }
 
     // Mutate an individual
-    private static void mutate(Individual indiv) {
+    private static void mutate(Individual individual) {
         // Loop through genes
-        for (int i = 0; i < indiv.size(); i++) {
+        for (int i = 0; i < individual.size(); i++) {
             if (Math.random() <= mutationRate) {
                 // Create random gene
                 byte gene = (byte) Math.round(Math.random());
-                indiv.setGene(i, gene);
+                individual.setGene(i, gene);
             }
         }
     }
@@ -77,7 +77,6 @@ public class Algorithm {
             tournament.saveIndividual(i, pop.getIndividual(randomId));
         }
         // Get the fittest
-        Individual fittest = tournament.getFittest();
-        return fittest;
+        return tournament.getFittest();
     }
 }
