@@ -12,7 +12,7 @@ public class Main {
         int generationCount = 0;
         while (myPop.getFittest().getFitness() < FitnessCalc.getMaxFitness()) {
             generationCount++;
-            System.out.println("Generation: " + generationCount + " Fittest: " + myPop.getFittest().getFitness());
+            System.out.println("Generation: " + generationCount + ", Fittest: " + myPop.getFittest().getFitness());
             myPop = Algorithm.evolvePopulation(myPop);
         }
         System.out.println("Solution found!");
